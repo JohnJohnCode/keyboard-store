@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 #{category.name}
+
+  p #[strong Description: ] #{category.description}
+
+
+  hr
+  p
+    a(href=category.url+'/delete') Delete category
+  p
+    a(href=category.url+'/update') Update category

@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 #{title}: #{keyboard.name}
+  p #[strong #{keyboard.manufacturer.name}] 
+
+    p Do you really want to delete this keyboard?
+
+    form(method='POST' action='')
+      div.form-group
+        input#keyboardid.form-control(type='hidden',name='keyboardid', required='true', value=keyboard._id )
+
+      button.btn.btn-primary(type='submit') Delete

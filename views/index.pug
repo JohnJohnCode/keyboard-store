@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #[em KBStore], a very basic Express website developed to showcase my backend knowledge.
+
+  h1 Store contents
+
+  if error
+    p Error getting store content.
+  else
+    p The store has the following content counts:
+
+    ul
+      li #[strong Keyboards:] !{data.keyboard_count}
+      li #[strong Manufacturers:] !{data.manufacturer_count}
+      li #[strong Categories:] !{data.category_count}

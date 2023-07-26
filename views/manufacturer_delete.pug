@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h1 #{title}: #{manufacturer.name}
+  p= manufacturer.description
+
+  if manufacturer_keyboards.length
+
+    p #[strong Delete the following keyboards before attempting to delete this manufacturer.]
+
+    div(style='margin-left:20px;margin-top:20px')
+
+      h4 Keyboards
+
+      dl
+      each keyboard in manufacturer_keyboards
+        dt
+          a(href=keyboard.url) #{keyboard.name}
+        dd #{keyboard.description}
+
+  else
+    p Do you really want to delete this manufacturer?
+
+    form(method='POST' action='')
+      div.form-group
+        input#manufacturerid.form-control(type='hidden',name='manufacturerid', required='true', value=manufacturer._id )
+
+      button.btn.btn-primary(type='submit') Delete

@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1 #{keyboard.name}
+
+  p #[strong Manufacturer: ]
+    a(href=keyboard.manufacturer.url) #{keyboard.manufacturer.name}
+  p #[strong Description: ] #{keyboard.description}
+  p #[strong In stock: ] #{keyboard.stock}
+  p #[strong Price: ] US$#{keyboard.price}
+  p #[strong Category: ]
+    each val, index in keyboard.category
+      a(href=val.url) #{val.name}
+      if index < keyboard.category.length - 1
+        |, 
+
+
+  hr
+  p
+    a(href=keyboard.url+'/delete') Delete keyboard
+  p
+    a(href=keyboard.url+'/update') Update keyboard

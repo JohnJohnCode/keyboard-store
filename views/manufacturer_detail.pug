@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 #{manufacturer.name}
+
+  p #[strong Description: ] #{manufacturer.description}
+
+
+  hr
+  p
+    a(href=manufacturer.url+'/delete') Delete manufacturer
+  p
+    a(href=manufacturer.url+'/update') Update manufacturer
