@@ -15,6 +15,12 @@ block content
                 h6(class="card-subtitle mb-3") #{keyboard.manufacturer.name}
                 p(class="card-text") #{keyboard.description}
               ul(class="list-group list-group-flush")
+                li(class="list-group-item bg-dark") 
+                  each category, index in keyboard.category
+                    if index === keyboard.category.length - 1
+                     | #{category.name}
+                    else
+                     | #{category.name}, 
                 li(class="list-group-item bg-dark") In stock: #{keyboard.stock}
                 li(class="list-group-item bg-dark") Price: US$#{keyboard.price}
               div(class="card-body")
@@ -27,6 +33,12 @@ block content
                 h6(class="card-subtitle mb-3") #{keyboard.manufacturer.name}
                 p(class="card-text") #{keyboard.description}
               ul(class="list-group list-group-flush")
+                li(class="list-group-item bg-dark") 
+                  each category, index in keyboard.category
+                    if index === keyboard.category.length - 1
+                     | #{category.name}
+                    else
+                     | #{category.name}, 
                 li(class="list-group-item bg-dark") In stock: #{keyboard.stock}
                 li(class="list-group-item bg-dark") Price: US$#{keyboard.price}
               div(class="card-body")
@@ -39,6 +51,12 @@ block content
                 h6(class="card-subtitle mb-3") #{keyboard.manufacturer.name}
                 p(class="card-text") #{keyboard.description}
               ul(class="list-group list-group-flush")
+                li(class="list-group-item bg-dark") 
+                  each category, index in keyboard.category
+                    if index === keyboard.category.length - 1
+                     | #{category.name}
+                    else
+                     | #{category.name}, 
                 li(class="list-group-item bg-dark") In stock: #{keyboard.stock}
                 li(class="list-group-item bg-dark") Price: US$#{keyboard.price}
               div(class="card-body")
