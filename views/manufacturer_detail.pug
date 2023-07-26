@@ -5,6 +5,50 @@ block content
 
   p #[strong Description: ] #{manufacturer.description}
 
+  hr
+
+  div(class="container-fluid")
+    div(class="row row-cols-5")
+      -var counter = 0
+      each keyboard in keyboard_list
+        if counter == 0
+          -counter = counter + 1
+          div(class="card mb-3 mr-2 bg-dark" style="width: 18rem; height: fit-content;")
+            div(class="card-body")
+              h5(class="card-title") #{keyboard.name}
+              h6(class="card-subtitle mb-3") #{keyboard.manufacturer.name}
+              p(class="card-text") #{keyboard.description}
+            ul(class="list-group list-group-flush")
+              li(class="list-group-item bg-dark") In stock: #{keyboard.stock}
+              li(class="list-group-item bg-dark") Price: US$#{keyboard.price}
+            div(class="card-body")
+              a(href=keyboard.url class="card-link") Buy
+        else if counter == 3
+          -counter = 0
+          div(class="card mb-3 ml-2 bg-dark" style="width: 18rem; height: fit-content;")
+            div(class="card-body")
+              h5(class="card-title") #{keyboard.name}
+              h6(class="card-subtitle mb-3") #{keyboard.manufacturer.name}
+              p(class="card-text") #{keyboard.description}
+            ul(class="list-group list-group-flush")
+              li(class="list-group-item bg-dark") In stock: #{keyboard.stock}
+              li(class="list-group-item bg-dark") Price: US$#{keyboard.price}
+            div(class="card-body")
+              a(href=keyboard.url class="card-link") Buy
+        else
+          -counter = counter + 1
+          div(class="card mb-3 mr-2 ml-2 bg-dark" style="width: 18rem; height: fit-content;")
+            div(class="card-body")
+              h5(class="card-title") #{keyboard.name}
+              h6(class="card-subtitle mb-3") #{keyboard.manufacturer.name}
+              p(class="card-text") #{keyboard.description}
+            ul(class="list-group list-group-flush")
+              li(class="list-group-item bg-dark") In stock: #{keyboard.stock}
+              li(class="list-group-item bg-dark") Price: US$#{keyboard.price}
+            div(class="card-body")
+              a(href=keyboard.url class="card-link") Buy
+      else
+        li This manufacturer has no keyboards listed.
 
   hr
   p

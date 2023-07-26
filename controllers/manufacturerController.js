@@ -15,12 +15,28 @@ exports.manufacturer_list = (req, res) => {
 
 // Display detail page for a specific manufacturer.
 exports.manufacturer_detail = (req, res) => {
-  Manufacturer.findById(req.params.id)
-  .exec((err, results) => {
-    if (err) return next(err);
-    res.render("manufacturer_detail", { title: "Manufacturer detail", manufacturer: results });
-  });
-};
+  async.parallel(
+    {
+      manufacturer(callback) {
+        Manufacturer.findById(req.params.id).exec(callback);
+      },
+      manufacturer_keyboards(callback) {
+        Keyboard.find({ manufacturer: req.params.id }).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      // Success
+      res.render("manufacturer_detail", { 
+        title: "Manufacturer detail",
+        manufacturer: results.manufacturer,
+        keyboard_list: results.manufacturer_keyboards
+      });
+    }
+  );
+}
 
 // Display manufacturer create form on GET.
 exports.manufacturer_create_get = (req, res) => {

@@ -15,12 +15,28 @@ exports.category_list = (req, res) => {
 
 // Display detail page for a specific category.
 exports.category_detail = (req, res) => {
-  Category.findById(req.params.id)
-  .exec((err, results) => {
-    if (err) return next(err);
-    res.render("category_detail", { title: "Category detail", category: results });
-  });
-};
+  async.parallel(
+    {
+      category(callback) {
+        Category.findById(req.params.id).exec(callback);
+      },
+      category_keyboards(callback) {
+        Keyboard.find({ category: req.params.id }).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      // Success
+      res.render("category_detail", { 
+        title: "Category detail",
+        category: results.category,
+        keyboard_list: results.category_keyboards
+      });
+    }
+  );
+}
 
 // Display category create form on GET.
 exports.category_create_get = (req, res) => {
